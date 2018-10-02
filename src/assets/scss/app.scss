@@ -1,0 +1,205 @@
+@import 'components/card';
+@import url('https://fonts.googleapis.com/css?family=Bai+Jamjuree');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+* {
+  box-sizing: border-box
+}
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: 'Bai Jamjuree', sans-serif !important;
+}
+
+.form-builder {
+  // padding: 30px;
+  &__fields-menu {
+    width:20%;
+    float: left;
+    background: #F4F6FA;
+    min-height: 100vh;
+    padding: 20px 0;
+    &__items {
+      margin: 0;
+      display: flex;
+      padding: 0 10px 10px 10px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      &__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+        width: 100%;
+        flex: 0 48%;
+        list-style: none;
+        color: #2f3439;
+        padding: 8px 5px;
+        border: 1px dashed #eee;
+        // width: 135px!important;
+        min-height: 105px;
+        background: #fcfcfd;
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 11px;
+        line-height: 21px;
+        &__icon {
+          color: #0d86e09c;
+          font-size: 30px;
+        }
+        &__name {
+          font-size: 14px;
+          margin: 10px 0;
+          color: #000;
+        }
+        &:hover {
+          background: #f3f3f5;
+          border-color: rgba(7, 25, 187, 0.514);
+        }
+      }
+    }
+  }
+  .field-properties {
+    width:20%;
+    float: right;
+    background: #F4F6FA;
+    min-height: 100vh;
+    padding: 20px 0;
+    transform: translateX(105%);
+    transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &-open {
+      transform: translate(0);
+    }
+  }
+  &__represent {
+    float: left;
+    width: 60%;
+    // transition: width .1s ease-in-out;
+    padding: 20px;
+    &__body {
+      // border: 1px solid #cccccc3b;
+      min-height: 400px;
+      padding: 30px 30px 100px;
+      position: relative;
+      z-index: 3;
+      max-height: 95vh;
+      overflow: auto;
+      &__items {
+        &__placeholder {
+          border: 2px dotted rgba(7, 25, 187, 0.514);
+          height: 50px;
+          background-color: #F4F6FA;
+          margin-left: 3px;
+          margin-right: 3px;
+        }
+      }
+    }
+  }
+}
+
+.fake-field {
+  transition: all .9s cubic-bezier(0.075, 0.82, 0.165, 1);
+  // z-index: 2;
+}
+
+.table-border {
+  td, th {
+    border: 1px solid #ccc;
+    padding: 3px
+  }
+}
+
+.simulated-field,.fake-field {
+  border: 1px solid #e6e6e6;
+  // display: flex;
+  min-height: 48px;
+  background: #fff;
+  margin-left: 3px;
+  margin-right: 3px;
+  font-size: 14px;
+  align-items: center;
+  z-index: 9;
+  i {
+    margin-right: 5px;
+    color: #0d86e09c;
+    font-size: 20px;
+    font-weight: normal;
+  }
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+  &:hover {
+    color: #3987d9;
+    background: #f4f9ff;
+    border: 1px dashed #3987d9;
+  }
+}
+.simulated-field {
+  display: flex;
+  user-select: none;
+  justify-content: space-between;
+  transition: all .5s ease-in-out;
+  .field-wrapper {
+    display: flex;
+    padding: 13px;
+  }
+  .remove-field {
+    border-left: 1px dashed #3987d9;
+    padding: 10px;
+    cursor: pointer;
+    i {
+      color: #3987d9;
+    }
+  }
+}
+.selected_field {
+  color: #3987d9;
+  background: #f4f9ff;
+  border: 1px dashed #3987d9;
+}
+.fake-field{
+  border: 1px solid #e6e6e6;
+  display: flex;
+  min-height: 48px;
+  background: #fff;
+  margin-left: 3px;
+  margin-right: 3px;
+  font-size: 14px;
+  align-items: center;
+  z-index: 9;
+  border: 2px dotted #0719bb52;
+  padding: 3px 15px;
+  min-width: 200px;
+  cursor: move;
+}
+
+.drag_and_drop {
+  text-align: center;
+  height: 100%;
+  color: #a5a5a5;
+  text-transform: uppercase;
+  font-weight: bold
+}
+
+.centeralize {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.slide-fade-enter-active {
+  transition: all .2s linear
+}
+.slide-fade-leave-active {
+  transition: all .2s linear //cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter{
+  transform: translateY(5%);
+  // transform: scale(0);
+  opacity: 0;
+}
+.slide-fade-leave-to {
+  transform: translateY(0);
+  // transform: scale(0);
+  opacity: 0;
+}

@@ -1,0 +1,22 @@
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  background-color:#fff;
+  // &:hover {
+  //   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  // }
+  &__header {
+    background-color: #f9f9f9;
+    padding: 1em;
+    &__title {
+      padding: 0;
+      margin: 0;
+      font-size: 30px;
+      color: #6f6f6f;
+    }
+  }
+  &__body {
+    padding: 2em;
+  }
+}
