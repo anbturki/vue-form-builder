@@ -16,7 +16,6 @@ body {
     width:20%;
     float: left;
     background: #F4F6FA;
-    min-height: 100vh;
     padding: 20px 0;
     &__items {
       margin: 0;
@@ -63,36 +62,11 @@ body {
     width:20%;
     float: right;
     background: #F4F6FA;
-    min-height: 100vh;
     padding: 20px 0;
     transform: translateX(105%);
     transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
     &-open {
       transform: translate(0);
-    }
-  }
-  &__represent {
-    float: left;
-    width: 60%;
-    // transition: width .1s ease-in-out;
-    padding: 20px;
-    &__body {
-      // border: 1px solid #cccccc3b;
-      min-height: 400px;
-      padding: 30px 30px 100px;
-      position: relative;
-      z-index: 3;
-      max-height: 95vh;
-      overflow: auto;
-      &__items {
-        &__placeholder {
-          border: 2px dotted rgba(7, 25, 187, 0.514);
-          height: 50px;
-          background-color: #F4F6FA;
-          margin-left: 3px;
-          margin-right: 3px;
-        }
-      }
     }
   }
 }
@@ -138,7 +112,7 @@ body {
   display: flex;
   user-select: none;
   justify-content: space-between;
-  transition: all .5s ease-in-out;
+  transition: all .2s ease-in-out;
   .field-wrapper {
     display: flex;
     padding: 13px;
@@ -183,7 +157,6 @@ body {
 
 .centeralize {
   display: flex;
-  min-height: 100vh;
   justify-content: center;
   align-items: center;
 }

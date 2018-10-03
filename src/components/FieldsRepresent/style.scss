@@ -1,0 +1,29 @@
+
+.form-builder__represent {
+  float: left;
+  width: 60%;
+  max-height: 820px;
+  border: 1px solid #eee;
+  margin: 10px;
+  overflow-y: auto;
+  // transition: width .1s ease-in-out;
+  padding: 20px;
+  &__body {
+    // border: 1px solid #cccccc3b;
+    min-height: 400px;
+    padding: 30px 30px 100px;
+    position: relative;
+    z-index: 3;
+    max-height: 95vh;
+    overflow: auto;
+    &__items {
+      &__placeholder {
+        border: 2px dotted rgba(7, 25, 187, 0.514);
+        height: 50px;
+        background-color: #F4F6FA;
+        margin-left: 3px;
+        margin-right: 3px;
+      }
+    }
+  }
+}

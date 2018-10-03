@@ -6,12 +6,14 @@
       <fields-menu-item @mousedown="mousedown" icon="text_fields" type="long_text" name="Multi Line"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="text_fields" type="number" name="Number"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="check_box" type="checkbox" name="Checkbox"></fields-menu-item>
+      <fields-menu-item @mousedown="mousedown" icon="check_box" type="dropdown" name="Drop Down"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="text_fields" name="Multi Select"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="radio_button_checked" type="radio" name="Radio"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="today" type="date" name="Date"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="access_time" type="time" name="Time"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="call" type="phone" name="Phone"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="attachment" type="attachment" name="Attachment"></fields-menu-item>
+      <fields-menu-item @mousedown="mousedown" icon="attachment" type="section" name="Section"></fields-menu-item>
     </ul>
   </div>
 </template>
@@ -24,7 +26,7 @@ export default {
     mousedown (event) {
       this.$emit('mousedown', event.event)
       delete event.event
-      this.$emit('selectedField', event)
+      this.$emit('captureField', event)
     }
   }
 }

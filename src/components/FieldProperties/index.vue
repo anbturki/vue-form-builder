@@ -26,7 +26,7 @@
     </div>
     <div class="field-properties-form">
       <label>Key</label>
-      <input type="text" v-model="field._key" class="disabled" disabled>
+      <input type="text" v-model="field.key" class="disabled" disabled>
     </div>
     <div class="field-properties-form">
       <label>Field Type</label>

@@ -22,6 +22,12 @@ export default {
     }
   },
   methods: {
+    /**
+     * Executed when mouse is down over the menu item.
+     * It emits mouse event to Menu Wrapper component.
+     * @method onMouseDownOnField
+     * @param {MouseEvent} event
+     */
     onMouseDownOnField (event) {
       let choices = [
         'Choice 1',
@@ -33,7 +39,7 @@ export default {
         icon: this.icon,
         type: this.type,
         value: '',
-        _key: '_' + Math.random().toString(36).substr(2, 9),
+        key: '_' + Math.random().toString(36).substr(2, 9),
         event,
         choices
       })
