@@ -36,9 +36,7 @@
       v-if="placeholderVisiblity && pickedField.type !== 'section'">
     </div>
   </div>
-  <transition name="slide-fade">
-    <FieldDialog v-if="showDialog" @yes="onDelete" @cancel="showDialog = false"/>
-  </transition>
+  <FieldDialog v-if="showDialog" @yes="onDelete" @cancel="showDialog = false"/>
 </div>
 </template>
 <script>
