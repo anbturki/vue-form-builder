@@ -1,13 +1,12 @@
 
 .form-builder__represent {
-  float: left;
-  width: 60%;
   max-height: 820px;
-  border: 1px solid #eee;
-  margin: 10px;
+  // border: 1px solid rgb(121, 52, 52);
   overflow-y: auto;
-  // transition: width .1s ease-in-out;
-  padding: 20px;
+  margin-left: 305px;
+  transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  min-height: 100vh;
+  padding: 20px 20px 100px;
   &__body {
     // border: 1px solid #cccccc3b;
     min-height: 400px;
@@ -26,4 +25,16 @@
       }
     }
   }
+}
+
+.field-props-open {
+  margin-right: 255px;
+}
+
+.field-placeholder {
+  border: 2px dotted rgb(7, 25, 187);
+  height: 50px;
+  background-color: #F4F6FA;
+  margin-left: 3px;
+  margin-right: 3px;
 }

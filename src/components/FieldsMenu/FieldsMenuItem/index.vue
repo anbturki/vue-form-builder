@@ -29,21 +29,71 @@ export default {
      * @param {MouseEvent} event
      */
     onMouseDownOnField (event) {
-      let choices = [
-        'Choice 1',
-        'Choice 2',
-        'Choice 3'
-      ]
-      this.$emit('mousedown', {
+      const field = {
         name: this.name,
         icon: this.icon,
         type: this.type,
+        description: '',
         value: '',
-        key: '_' + Math.random().toString(36).substr(2, 9),
-        event,
-        choices
-      })
+        key:
+          '_' +
+          Math.random()
+            .toString(36)
+            .substr(2, 9),
+        event
+      }
+      if (this.type === 'checkbox') {
+        field.value = []
+      }
+      switch (this.type) {
+        case 'radio':
+        case 'checkbox':
+          this.$set(field, 'choices', ['Choice', 'Choice', 'Choice'])
+          break
+        case 'long_text':
+          this.$set(field, 'max_length', null)
+          break
+        case 'section':
+          this.$set(field, 'showHeader', true)
+          break
+      }
+      this.$emit('mousedown', field)
     }
   }
 }
 </script>
+<style lang="scss" scoped>
+.form-builder__fields-menu__items__item {
+  color: #0d86e09c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  width: 100%;
+  flex: 0 48%;
+  list-style: none;
+  padding: 8px 5px;
+  border: 1px dashed #eee;
+  // width: 135px!important;
+  min-height: 105px;
+  background: #fcfcfd;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 21px;
+  &__icon {
+    color: #0d86e09c;
+    font-size: 30px;
+  }
+  &__name {
+    font-size: 14px;
+    margin: 10px 0;
+    color: #000;
+  }
+  &:hover {
+    background: #f3f3f5;
+    border-color: rgba(7, 25, 187, 0.514);
+  }
+}
+</style>

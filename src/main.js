@@ -8,7 +8,9 @@ Vue.directive('section', {
   bind (el, binding, vNode) {
     mouseMove = function (event) {
       if (el === event.target || el.contains(event.target)) {
-        vNode.context[binding.expression](event)
+        vNode.context[binding.expression](event, vNode.context)
+      } else {
+        vNode.context.placeholderVisiblity = false
       }
     }
     window.addEventListener('mousemove', mouseMove)

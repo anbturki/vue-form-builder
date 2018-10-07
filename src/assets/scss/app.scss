@@ -1,5 +1,6 @@
 @import 'components/card';
-@import url('https://fonts.googleapis.com/css?family=Bai+Jamjuree');
+// @import url('https://fonts.googleapis.com/css?family=Bai+Jamjuree');
+@import url('https://fonts.googleapis.com/css?family=Cairo');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 * {
   box-sizing: border-box
@@ -7,68 +8,8 @@
 body {
   padding: 0 !important;
   margin: 0 !important;
-  font-family: 'Bai Jamjuree', sans-serif !important;
-}
-
-.form-builder {
-  // padding: 30px;
-  &__fields-menu {
-    width:20%;
-    float: left;
-    background: #F4F6FA;
-    padding: 20px 0;
-    &__items {
-      margin: 0;
-      display: flex;
-      padding: 0 10px 10px 10px;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      &__item {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        user-select: none;
-        width: 100%;
-        flex: 0 48%;
-        list-style: none;
-        color: #2f3439;
-        padding: 8px 5px;
-        border: 1px dashed #eee;
-        // width: 135px!important;
-        min-height: 105px;
-        background: #fcfcfd;
-        margin-bottom: 10px;
-        text-align: center;
-        font-size: 11px;
-        line-height: 21px;
-        &__icon {
-          color: #0d86e09c;
-          font-size: 30px;
-        }
-        &__name {
-          font-size: 14px;
-          margin: 10px 0;
-          color: #000;
-        }
-        &:hover {
-          background: #f3f3f5;
-          border-color: rgba(7, 25, 187, 0.514);
-        }
-      }
-    }
-  }
-  .field-properties {
-    width:20%;
-    float: right;
-    background: #F4F6FA;
-    padding: 20px 0;
-    transform: translateX(105%);
-    transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    &-open {
-      transform: translate(0);
-    }
-  }
+  // font-family: 'Bai Jamjuree', sans-serif !important;
+  font-family: 'Cairo', sans-serif;
 }
 
 .fake-field {
@@ -96,7 +37,7 @@ body {
   i {
     margin-right: 5px;
     color: #0d86e09c;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: normal;
   }
   &:not(:first-child) {
@@ -113,16 +54,27 @@ body {
   user-select: none;
   justify-content: space-between;
   transition: all .2s ease-in-out;
+  min-height: 25px !important;
+  &.active{
+    color: #3987d9;
+    background: #f4f9ff;
+    border: 1px dashed #3987d9;
+  }
   .field-wrapper {
     display: flex;
-    padding: 13px;
+    padding: 8px;
+    align-items: center;
   }
   .remove-field {
     border-left: 1px dashed #3987d9;
-    padding: 10px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     i {
       color: #3987d9;
+      font-size: 20px;
     }
   }
 }
@@ -176,3 +128,42 @@ body {
   // transform: scale(0);
   opacity: 0;
 }
+
+.form-row{
+  padding:0 10px;
+  margin: 15px 0;
+  label {
+    margin: 0 0 5px;
+    font-weight: normal;
+  }
+  input, textarea {
+    border: none;
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 5px 10px;
+    min-height: 30px;
+    font-size: 16px;
+    box-shadow: none;
+    &.disabled {
+      background: #e8e8e8ad !important;
+      cursor: not-allowed;
+    }
+    &:focus {
+      border: 1px solid #3987d9;
+      outline: none;
+    }
+  }
+  &.checkbox {
+    display: flex;
+    align-items: center;
+    input {
+      width: 30px !important;
+      min-height: auto;
+      padding: 0;
+      margin: 0 10px;
+    }
+    label {
+      margin: 0
+    }
+  }
+  }

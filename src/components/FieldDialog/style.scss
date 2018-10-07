@@ -1,0 +1,46 @@
+.field-dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  &__modal {
+    background-color: #fff;
+    min-width: 400px;
+    max-width: 600px;
+    &__header {
+      background-color: #f00;
+      padding: 10px;
+      color: #fff;
+      h4 {
+        margin: 0;
+      }
+    }
+    &__content {
+      padding: 20px 10px;
+    }
+    &__actions {
+      border-top: 1px solid #eee;
+      .button {
+        padding: 10px 15px;
+        font-size: 14px;
+        margin: 6px;
+        cursor: pointer;
+        box-shadow: 1px 3px 7px #9c9c9c9c;
+        border: none;
+        background-color: #eee;
+        outline: none;
+        &-yes {
+          background: #f00;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

@@ -34,7 +34,6 @@ export default {
     })
     window.addEventListener('mouseup', (event) => {
       window.removeEventListener('mousemove', this.draggingField)
-      console.log(this.value, this.showingPlaceholder)
       const { fakeField } = this.$refs
       if (this.value && this.showingPlaceholder) {
         fakeField.style.left = 'auto'
@@ -53,7 +52,7 @@ export default {
       EventBus.$emit('updatePlaceholder', false)
       this.showingPlaceholder = false
     })
-    EventBus.$on('fieldPicked', (event) => {
+    EventBus.$on('mouseDragging', (event) => {
       this.startCoordinates.top = event.clientY
       this.startCoordinates.left = event.clientX
       window.addEventListener('mousemove', this.draggingField)
