@@ -22,12 +22,13 @@ export default {
       moving: false,
       sections: [
         {
-          name: 'Default',
+          title: 'Default',
           type: 'section',
           icon: 'view_module',
           showHeader: false,
+          sub_sections: [],
           description: '',
-          key: '_' + Math.random().toString(36).substr(2, 9),
+          pk: '_' + Math.random().toString(36).substr(2, 9),
           order: 1,
           questions: []
         }
@@ -36,8 +37,8 @@ export default {
   },
   mounted () {
     EventBus.$on('deleteField', ({ field, sectionKey }) => {
-      const sectionIndex = this.sections.findIndex(sec => sec.key === sectionKey)
-      const questionIndex = this.sections[sectionIndex].questions.findIndex(f => f.key === field.key)
+      const sectionIndex = this.sections.findIndex(sec => sec.pk === sectionKey)
+      const questionIndex = this.sections[sectionIndex].questions.findIndex(f => f.pk === field.pk)
       this.sections[sectionIndex].questions.splice(questionIndex, 1)
     })
     EventBus.$on('setActiveField', ({ field, sectionKey }) => {
@@ -50,10 +51,10 @@ export default {
       if (this.pickedField.type === 'section') {
         let section = { ...this.pickedField }
         this.$set(section, 'questions', [])
-        const sectionIndex = this.sections.findIndex(sec => sec.key === sectionKey)
+        const sectionIndex = this.sections.findIndex(sec => sec.pk === sectionKey)
         this.sections.splice(sectionIndex + 1, 0, section)
       } else {
-        const sectionIndex = this.sections.findIndex(sec => sec.key === sectionKey)
+        const sectionIndex = this.sections.findIndex(sec => sec.pk === sectionKey)
         this.sections[sectionIndex].questions.push(this.pickedField)
       }
       this.activeField = this.pickedField
@@ -66,7 +67,36 @@ export default {
     },
     onMouseDown (event) {
       EventBus.$emit('mouseDragging', event)
+    },
+    createPlaceholderField () {
+      return {
+        pk: '_' + Math.random().toString(36).substr(2, 9),
+        type: 'fake'
+      }
     }
   }
 }
 </script>
+<style lang="scss">
+  .floating-btn {
+    outline: none;
+    border: none;
+    background-color: cornflowerblue;
+    color: #fff;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 999;
+    box-shadow: 0px 2px 20px 0px #bdbdbd;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
+</style>

@@ -22,6 +22,9 @@ export default {
     }
   },
   methods: {
+    genPk () {
+      return `_${Math.random().toString(36).substr(2, 9)}`
+    },
     /**
      * Executed when mouse is down over the menu item.
      * It emits mouse event to Menu Wrapper component.
@@ -30,16 +33,12 @@ export default {
      */
     onMouseDownOnField (event) {
       const field = {
-        name: this.name,
+        title: this.name,
         icon: this.icon,
         type: this.type,
         description: '',
         value: '',
-        key:
-          '_' +
-          Math.random()
-            .toString(36)
-            .substr(2, 9),
+        pk: this.genPk(),
         event
       }
       if (this.type === 'checkbox') {
@@ -48,13 +47,31 @@ export default {
       switch (this.type) {
         case 'radio':
         case 'checkbox':
-          this.$set(field, 'choices', ['Choice', 'Choice', 'Choice'])
+        case 'multiselect':
+        case 'dropdown':
+          this.$set(field, 'choices', [
+            { pk: this.genPk(), title: 'choice' },
+            { pk: this.genPk(), title: 'choice' },
+            { pk: this.genPk(), title: 'choice' }
+          ])
+          field.type = 'choices'
+          this.$set(field, 'widget', 'dropdown')
+          this.$set(field, 'multi_select', false)
+          if (this.type === 'radio') {
+            field.widget = 'radio'
+          } else if (this.type === 'checkbox') {
+            field.widget = 'radio'
+            field.multi_select = true
+          } else if (this.type === 'multiselect') {
+            field.multi_select = true
+          }
           break
         case 'long_text':
           this.$set(field, 'max_length', null)
           break
         case 'section':
           this.$set(field, 'showHeader', true)
+          this.$set(field, 'sub_sections', [])
           break
       }
       this.$emit('mousedown', field)

@@ -7,7 +7,7 @@
       <fields-menu-item @mousedown="mousedown" icon="looks_3" type="number" name="Number"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="check_box" type="checkbox" name="Checkbox"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="list_alt" type="dropdown" name="Drop Down"></fields-menu-item>
-      <fields-menu-item @mousedown="mousedown" icon="format_list_numbered_rtl" name="Multi Select"></fields-menu-item>
+      <fields-menu-item @mousedown="mousedown" icon="format_list_numbered_rtl" type="multiselect" name="Multi Select"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="radio_button_checked" type="radio" name="Radio"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="today" type="date" name="Date"></fields-menu-item>
       <fields-menu-item @mousedown="mousedown" icon="access_time" type="time" name="Time"></fields-menu-item>
