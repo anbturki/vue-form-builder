@@ -1,6 +1,6 @@
 <template>
   <div class="fake-field" ref="fakeField" v-if="value">
-    <i class="material-icons">{{field.icon}}</i> {{field.name}}
+    <i class="material-icons">{{field.icon}}</i> {{field.title}}
   </div>
 </template>
 
@@ -24,7 +24,8 @@ export default {
         top: 0
       },
       showingPlaceholder: false,
-      sectionKey: ''
+      sectionKey: '',
+      fieldIndex: 0
     }
   },
   mounted () {
@@ -65,7 +66,7 @@ export default {
       this.$nextTick(() => {
         const { fakeField } = this.$refs
         fakeField.style.position = 'absolute'
-        fakeField.style.top = `${event.clientY + 5}px`
+        fakeField.style.top = `${event.clientY + 10}px`
         fakeField.style.left = `${event.clientX - (fakeField.clientWidth / 2)}px`
       })
     }

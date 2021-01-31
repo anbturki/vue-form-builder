@@ -1,15 +1,15 @@
 <template>
   <div class="form-builder__represent" :class="{'field-props-open': isFieldPropOpen}">
-    <div class="drag_and_drop" v-if="!sections[0].questions.length">
+    <!-- <div class="drag_and_drop" v-if="!sections[0].questions.length">
       <img src="/images/drag.svg" />
       <p>Drag and drop a field here</p>
-    </div>
+    </div> -->
     <FieldsSection
       v-for="section in sections"
-      :key="section.key"
+      :key="section.pk"
       :section="section"
       :moving="moving"/>
-      <div style="min-height: 100px" v-section="mouseMove">
+      <div style="min-height: 100px" v-show="pickedField.type === 'section'" v-section="mouseMove">
         <div class="field-placeholder" style="margin: 20px 0" v-if="placeholderVisiblity && pickedField.type === 'section'"></div>
       </div>
   </div>
@@ -52,7 +52,7 @@ export default {
   methods: {
     mouseMove (event) {
       if (this.moving) {
-        EventBus.$emit('activePlaceholder', { status: true, section: this.sections[this.sections.length - 1].key })
+        EventBus.$emit('activePlaceholder', { status: true, section: this.sections[this.sections.length - 1].pk })
         this.placeholderVisiblity = true
       }
     }

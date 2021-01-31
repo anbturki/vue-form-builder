@@ -4,36 +4,34 @@
     class="form-builder__section"
     v-section="mouseMove"
     ref="section"
-    :class="{active: (mouseOver || section.key === activeField.key) && section.questions.length}"
+    :class="{active: (mouseOver || section.pk === activeField.pk) && section.questions.length}"
     @click="setActive(section)"
     :style="sectionStyle"
     @mouseover="mouseOver = pickedField.type !== 'section'"
     @mouseout="mouseOver = false">
-    <div class="form-builder__section__header" v-if="section.name && section.showHeader" :style="sectionHeaderStyle">
-      <i class="material-icons">{{section.icon}}</i>{{section.name}}
+    <div class="form-builder__section__header" v-if="section.title && section.showHeader" :style="sectionHeaderStyle">
+      <i class="material-icons">{{section.icon}}</i>{{section.title}}
     </div>
     <div class="form-builder__section__fields">
       <transition-group tag="ul" style="padding: 0" name="slide-fade">
-        <li v-for="field in section.questions"
-          :key="field.key"
-          :class="fieldClasses(field)"
-          @mouseover.stop
-          @click.stop="setActive(field)"
-          class="simulated-field">
-          <div class="field-wrapper">
-            <i class="material-icons">{{field.icon}}</i>
-            <span class="field-name">{{field.name}}</span>
-          </div>
-          <span class="remove-field" v-if="field.key === activeField.key" @click="showDialog = true">
-            <i class="material-icons">delete</i>
-          </span>
+        <template v-for="(field) in section.questions">
+          <FieldsSimulatedField
+            :class="fieldClasses(field)"
+            :field="field"
+            :key="field.pk"
+            @click.native.stop="setActive(field)"
+            @showDeleteDialog="showDialog = true"
+            :show-delete="field.pk === activeField.pk"
+            @mouseout="moveOnField"
+            />
+        </template>
+        <li
+          :key="section.pk"
+          class="form-builder__section__placeholder"
+          ref="placeholder"
+          v-if="placeholderVisiblity && pickedField.type !== 'section'">
         </li>
       </transition-group>
-    </div>
-    <div
-      class="form-builder__section__placeholder"
-      ref="placeholder"
-      v-if="placeholderVisiblity && pickedField.type !== 'section'">
     </div>
   </div>
   <FieldDialog v-if="showDialog" @yes="onDelete" @cancel="showDialog = false"/>
@@ -42,8 +40,9 @@
 <script>
 import EventBus from '@/EventBus'
 import FieldDialog from '@/components/FieldDialog'
+import FieldsSimulatedField from '@/components/FieldsSimulatedField'
 export default {
-  components: { FieldDialog },
+  components: { FieldDialog, FieldsSimulatedField },
   name: 'FieldsSection',
   props: {
     section: {
@@ -62,13 +61,14 @@ export default {
       mouseOver: false,
       pickedField: {},
       arPattern: /[\u0600-\u06FF]/,
-      activeField: {}
+      activeField: {},
+      moveOnField: false
     }
   },
   computed: {
     sectionStyle () {
       let styles = {}
-      if (!this.section.name && !this.mouseOver) {
+      if (!this.section.title && !this.mouseOver) {
         styles = { 'border-color': 'transparent' }
       }
       return styles
@@ -97,17 +97,17 @@ export default {
   },
   methods: {
     onDelete () {
-      EventBus.$emit('deleteField', { field: this.activeField, sectionKey: this.section.key })
+      EventBus.$emit('deleteField', { field: this.activeField, sectionKey: this.section.pk })
       this.showDialog = false
     },
     fieldClasses (field) {
       return {
-        RTLdirection: this.arPattern.test(field.name),
-        active: field.key === this.activeField.key && !this.mouseOver
+        RTLdirection: this.arPattern.test(field.title),
+        active: field.pk === this.activeField.pk && !this.mouseOver
       }
     },
     setActive (field) {
-      EventBus.$emit('setActiveField', { field, sectionKey: this.section.key })
+      EventBus.$emit('setActiveField', { field, sectionKey: this.section.pk })
       this.activeField = field
       EventBus.$on('setActiveField', ({ field }) => {
         this.activeField = field
@@ -116,15 +116,15 @@ export default {
     mouseMove (event) {
       if (this.moving) {
         this.placeholderVisiblity = true
-        this.$nextTick(() => {
-          EventBus.$emit('activePlaceholder', { status: this.placeholderVisiblity, section: this.section.key })
-        })
       }
     }
   },
   watch: {
-    'section.name': function (v) {
+    'section.title': function (v) {
       this.arHeader = this.arPattern.test(v)
+    },
+    'placeholderVisiblity': function (status) {
+      EventBus.$emit('activePlaceholder', { status, section: this.section.pk })
     }
   }
 }

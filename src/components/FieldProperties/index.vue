@@ -3,13 +3,13 @@
     <div class="title">Field Properties</div>
     <div class="form-row">
       <label>Name</label>
-      <input type="text" v-model="field.name">
+      <input type="text" v-model="field.title">
     </div>
     <div class="form-row" v-if="field.type !== 'section'">
       <label>Default value</label>
       <input type="text" v-model="field.value">
     </div>
-    <Choices v-if="field.type === 'radio' || field.type === 'checkbox'" :field="field"/>
+    <Choices v-if="field.type === 'choices'" :field="field"/>
     <div class="form-row">
       <label>Description</label>
       <textarea rows="5"></textarea>
@@ -24,7 +24,7 @@
     </div>
     <div class="form-row">
       <label>Key</label>
-      <input type="text" v-model="field.key" class="disabled" disabled>
+      <input type="text" v-model="field.pk" class="disabled" disabled>
     </div>
     <div class="form-row">
       <label>Field Type</label>

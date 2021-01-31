@@ -5,7 +5,7 @@
       <!-- // menu -->
       <div class="fake-field" ref="fakeField" v-show="moving">
         <!-- <input type="text" disabled placeholder="enter a name"> -->
-        <i class="material-icons">{{pickedField.icon}}</i> {{pickedField.name}}
+        <i class="material-icons">{{pickedField.icon}}</i> {{pickedField.title}}
       </div>
       <div class="form-builder__represent" :style="{width: fieldPropVisiblity ? '60%' : '80%'}">
         <div class="form-builder__represent__body" ref="preview" :class="{centeralize: !fieldPropVisiblity && !moving}">
@@ -15,16 +15,16 @@
           </div>
           <transition-group tag="ul" style="padding: 0" name="slide-fade">
             <li v-for="(field, i) in fields"
-              :key="field.key"
+              :key="field.pk"
               class="simulated-field"
-              :class="{selected_field: field.key === activeField.key}"
+              :class="{selected_field: field.pk === activeField.pk}"
               @click="activeField = field"
               @mouseover="onMouseOver">
               <div class="field-wrapper">
                 <i class="material-icons">{{field.icon}}</i>
-                <span class="field-name">{{field.name}}</span>
+                <span class="field-name">{{field.title}}</span>
               </div>
-              <span class="remove-field" v-if="field.key === activeField.key" @click="onDelete(i)">
+              <span class="remove-field" v-if="field.pk === activeField.pk" @click="onDelete(i)">
                 <i class="material-icons">delete</i>
               </span>
             </li>

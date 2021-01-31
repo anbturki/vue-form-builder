@@ -1,3 +1,6 @@
 module.exports = {
-  'lintOnSave': 'error'
+  'lintOnSave': 'error',
+  css: {
+    sourceMap: true
+  }
 }
