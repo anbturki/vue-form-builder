@@ -5,9 +5,9 @@
       <div class="form-row" v-for="(choice, index) in field.choices" :key="index">
         <input
           v-model="field.value"
-          :type="field.type === 'checkbox' ? 'checkbox' : 'radio'"
-          :value="choice + (index + 1)" style="width: 10%;">
-        <input type="text" :value="choice + (index + 1)" style="width: 50%">
+          :type="field.multi_select ? 'checkbox' : 'radio'"
+          :value="choice.title + (index + 1)" style="width: 10%;">
+        <input type="text" :value="choice.title + (index + 1)" style="width: 50%">
         <span @click="addItem(index)">+</span> <span @click="removeItem(index)">-</span>
       </div>
     </transition-group>
